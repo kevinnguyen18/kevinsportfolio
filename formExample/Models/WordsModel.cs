@@ -29,10 +29,29 @@ namespace formExample.Models
                 {
                     string currentLine = null;
                     string tempLine = null;
+                    int exactMatchTracker = 0;
                     while ((currentLine = lineReader.ReadLine()) != null)
                     {
                         tempLine = currentLine;
-                        matchingWordsArray.Add(tempLine); //Add to allWordsArray
+                        for(int i = 0; i < tempLine.Length; i++)
+                        {
+                            for(int j = 0; j < userStringInput.Length; j++)
+                            {
+                                if(Char.ToLower(tempLine[i]) == Char.ToLower(userStringInput[j]))
+                                {
+                                    exactMatchTracker++;
+                                    if((exactMatchTracker == tempLine.Length) && (exactMatchTracker != 0))
+                                    {
+                                        matchingWordsArray.Add(tempLine);
+                                    }
+                                   
+                                }
+                                //matchingWordsArray.Add("No match");
+                            }
+                            
+                        }
+                        exactMatchTracker = 0;
+                        //matchingWordsArray.Add(tempLine); //Add to allWordsArray
                     }
                     return tempLine;
 

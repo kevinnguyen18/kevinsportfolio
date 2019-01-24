@@ -1,0 +1,37 @@
+﻿@model formExample.Models.WordsModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron text-center">
+    <h1>Type in you letters</h1>
+    @using (Html.BeginForm())
+    {
+        @Html.TextBox("letters");
+        <button type="submit" class="btn btn-success">submit</button>
+        
+    }
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Matching words: </h2>
+
+        @if(Model.ArrayListOfSpecificWords == null)
+        {
+            <div class="col-md-12 text-center"><h2>No Words to Display Yet...</h2></div>
+        }
+        else
+        {
+            foreach (string word in Model.ArrayListOfSpecificWords)
+            {
+                <div class="col-md-3">@word</div>
+              
+            }
+        }
+
+    </div>
+
+</div>

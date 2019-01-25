@@ -30,27 +30,47 @@ namespace formExample.Models
                     string currentLine = null;
                     string tempLine = null;
                     int exactMatchTracker = 0;
+                    char[] userInputCharacterArray = new char[userStringInput.Length];
+                    
                     while ((currentLine = lineReader.ReadLine()) != null)
                     {
+
+                        for(int wordIndex = 0; wordIndex < userStringInput.Length; wordIndex++)
+                        {
+                            userInputCharacterArray[wordIndex] = userStringInput[wordIndex];
+                        }
                         tempLine = currentLine;
                         for(int i = 0; i < tempLine.Length; i++)
                         {
                             for(int j = 0; j < userStringInput.Length; j++)
                             {
-                                if(Char.ToLower(tempLine[i]) == Char.ToLower(userStringInput[j]))
+                                if(Char.ToLower(tempLine[i]) == Char.ToLower(userInputCharacterArray[j]))
                                 {
                                     exactMatchTracker++;
-                                    if((exactMatchTracker == tempLine.Length) && (exactMatchTracker != 0))
+                                    //userStringInput = removeCharAt(j, userStringInput);
+                                    //userInputCharacterArray[j] = null;
+                                    //matchingWordsArray.Add(userInputCharacterArray[j]);
+                                    userInputCharacterArray[j] = '1';
+                                    
+
+                                    if ((exactMatchTracker == tempLine.Length) && (exactMatchTracker != 0))
                                     {
                                         matchingWordsArray.Add(tempLine);
                                     }
-                                   
+
+                                    
+                                    j = userStringInput.Length;
                                 }
-                                //matchingWordsArray.Add("No match");
+                                else
+                                {
+                                    //Do nothing
+                                }
+                                
                             }
                             
                         }
                         exactMatchTracker = 0;
+                        userInputCharacterArray = new char[userStringInput.Length];
                         //matchingWordsArray.Add(tempLine); //Add to allWordsArray
                     }
                     return tempLine;
@@ -71,6 +91,26 @@ namespace formExample.Models
         public ArrayList getArray()
         {
             return matchingWordsArray;
+        }
+
+        public string removeCharAt(int index, string word)
+        {
+            string newUserWord = null;
+            for(int i = 0; i < word.Length; i++)
+            {
+
+                if(i == index)
+                {
+                    
+                }
+                else
+                {
+                    newUserWord = newUserWord + word[i].ToString();
+                }
+               
+               
+            }
+            return newUserWord;
         }
     }
 }

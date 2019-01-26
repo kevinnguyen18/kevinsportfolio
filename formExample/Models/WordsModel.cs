@@ -39,6 +39,7 @@ namespace formExample.Models
                         {
                             userInputCharacterArray[wordIndex] = userStringInput[wordIndex];
                         }
+
                         tempLine = currentLine;
                         for(int i = 0; i < tempLine.Length; i++)
                         {
@@ -47,10 +48,7 @@ namespace formExample.Models
                                 if(Char.ToLower(tempLine[i]) == Char.ToLower(userInputCharacterArray[j]))
                                 {
                                     exactMatchTracker++;
-                                    //userStringInput = removeCharAt(j, userStringInput);
-                                    //userInputCharacterArray[j] = null;
-                                    //matchingWordsArray.Add(userInputCharacterArray[j]);
-                                    userInputCharacterArray[j] = '1';
+                                    userInputCharacterArray[j] = '1';//Marks it so we know it's a match
                                     
 
                                     if ((exactMatchTracker == tempLine.Length) && (exactMatchTracker != 0))

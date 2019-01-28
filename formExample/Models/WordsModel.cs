@@ -35,41 +35,12 @@ namespace formExample.Models
                     while ((currentLine = lineReader.ReadLine()) != null)
                     {
 
-                        for(int wordIndex = 0; wordIndex < userStringInput.Length; wordIndex++)
-                        {
-                            userInputCharacterArray[wordIndex] = userStringInput[wordIndex];
-                        }
-
+                        CreateUserInputArray( userStringInput, userInputCharacterArray);
                         tempLine = currentLine;
-                        for(int i = 0; i < tempLine.Length; i++)
-                        {
-                            for(int j = 0; j < userStringInput.Length; j++)
-                            {
-                                if(Char.ToLower(tempLine[i]) == Char.ToLower(userInputCharacterArray[j]))
-                                {
-                                    exactMatchTracker++;
-                                    userInputCharacterArray[j] = '1';//Marks it so we know it's a match
-                                    
+                        DecideIfWordMatches(tempLine, userStringInput,  userInputCharacterArray,  exactMatchTracker);
+                        ResetTrackerAndUserWordInput(exactMatchTracker, userInputCharacterArray, userStringInput);
 
-                                    if ((exactMatchTracker == tempLine.Length) && (exactMatchTracker != 0))
-                                    {
-                                        matchingWordsArray.Add(tempLine);
-                                    }
 
-                                    
-                                    j = userStringInput.Length;
-                                }
-                                else
-                                {
-                                    //Do nothing
-                                }
-                                
-                            }
-                            
-                        }
-                        exactMatchTracker = 0;
-                        userInputCharacterArray = new char[userStringInput.Length];
-                        //matchingWordsArray.Add(tempLine); //Add to allWordsArray
                     }
                     return tempLine;
 
@@ -83,6 +54,53 @@ namespace formExample.Models
             }
         }
 
+        private void DecideIfWordMatches(string tempLine, string userStringInput, char[] userInputCharacterArray, int exactMatchTracker)
+        {
+            for (int i = 0; i < tempLine.Length; i++)
+            {
+                for (int j = 0; j < userStringInput.Length; j++)
+                {
+                    if (Char.ToLower(tempLine[i]) == Char.ToLower(userInputCharacterArray[j]))
+                    {
+                        exactMatchTracker++;
+                        userInputCharacterArray[j] = '1';//Marks it so we know it's a match
+
+
+                        if ((exactMatchTracker == tempLine.Length) && (exactMatchTracker != 0))
+                        {
+                            matchingWordsArray.Add(tempLine);
+                        }
+
+
+                        j = userStringInput.Length;
+                    }
+                    else
+                    {
+                        //Do nothing
+                    }
+
+                }
+
+            }
+        }
+
+        /*
+         * @param userStringInput - Takes int the letters of user input to have a list characters to use to form words
+         * @param userStringInput - List of characters that match the user Input. If there is a match then the slot in the array 
+         *                          will be null to show that the word has already been used.
+         */
+        private void CreateUserInputArray(string userStringInput, char[] userInputCharacterArray)
+        {
+            for (int wordIndex = 0; wordIndex < userStringInput.Length; wordIndex++)
+            {
+                userInputCharacterArray[wordIndex] = userStringInput[wordIndex];
+            }
+        }
+        private void ResetTrackerAndUserWordInput(int exactMatchTracker, char[] userInputCharacterArray, string userStringInput)
+        {
+            exactMatchTracker = 0;
+            userInputCharacterArray = new char[userStringInput.Length];
+        }
         /*
          * Returns an array of matching words
          */

@@ -10,16 +10,16 @@
     {
         @Html.TextBox("letters");
         <button type="submit" class="btn btn-success">submit</button>
-        
+
     }
 
 </div>
-
+<!--This gets 1 letter words-->
 <div class="row">
     <div class="col-md-12">
-        <h2>Matching words: </h2>
+        <h2>Results: </h2>
 
-        @if(Model.ArrayListOfSpecificWords == null)
+        @if (Model.ArrayListOfSpecificWords == null)
         {
             <div class="col-md-12 text-center"><h2>No Words to Display Yet...</h2></div>
         }
@@ -27,8 +27,144 @@
         {
             foreach (string word in Model.ArrayListOfSpecificWords)
             {
-                <div class="col-md-3">@word</div>
-              
+                if (word.Length == 1)
+                {
+                    <h2>Matching words: One letter </h2>
+                    <div class="col-md-3">@word</div>
+                }
+
+
+            }
+        }
+
+    </div>
+
+</div>
+
+<!--This gets 2 letter words-->
+<div class="row">
+    <div class="col-md-12">
+        
+
+        @if (Model.ArrayListOfSpecificWords == null)
+        {
+            <div class="col-md-12 text-center"><h2>No Words to Display Yet...</h2></div>
+        }
+        else
+        {
+            <h2>Matching words: 2 letter </h2>
+            foreach (string word in Model.ArrayListOfSpecificWords)
+            {
+                if (word.Length == 2)
+                {
+                    
+                    <div class="col-md-3">@word</div>
+                }
+
+
+            }
+        }
+
+    </div>
+
+</div>
+
+<!--This gets 3 letter words-->
+<div class="row">
+    <div class="col-md-12">
+        
+
+        @if (Model.ArrayListOfSpecificWords == null)
+        {
+            <div class="col-md-12 text-center"><h2>No Words to Display Yet...</h2></div>
+        }
+        else
+        {
+            <h2>Matching words: 3 letter </h2>
+            foreach (string word in Model.ArrayListOfSpecificWords)
+            {
+                if (word.Length == 3)
+                {
+                    <div class="col-md-3">@word</div>
+                }
+
+
+            }
+        }
+
+    </div>
+
+</div>
+
+<!--This gets 4 letter words-->
+<div class="row">
+    <div class="col-md-12">
+
+        @if (Model.ArrayListOfSpecificWords == null)
+        {
+
+        }
+        else
+        {
+            <h2>Matching words: 4 letter </h2>
+            foreach (string word in Model.ArrayListOfSpecificWords)
+            {
+                if (word.Length == 4)
+                {
+                    <div class="col-md-3">@word</div>
+                }
+
+            }
+        }
+
+    </div>
+
+</div>
+
+<!--This gets 5 letter words-->
+<div class="row">
+    <div class="col-md-12">
+
+        @if (Model.ArrayListOfSpecificWords == null)
+        {
+
+        }
+        else
+        {
+            <h2>Matching words: 5 letter </h2>
+            foreach (string word in Model.ArrayListOfSpecificWords)
+            {
+                if (word.Length == 5)
+                {
+                    <div class="col-md-3">@word</div>
+                }
+
+            }
+        }
+
+    </div>
+
+</div>
+
+
+<!--This gets 6 letter words-->
+<div class="row">
+    <div class="col-md-12">
+
+        @if (Model.ArrayListOfSpecificWords == null)
+        {
+
+        }
+        else
+        {
+            <h2>Matching words: 6+ letter </h2>
+            foreach (string word in Model.ArrayListOfSpecificWords)
+            {
+                if (word.Length >= 6)
+                {
+                    <div class="col-md-3">@word</div>
+                }
+
             }
         }
 

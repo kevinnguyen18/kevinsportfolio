@@ -1,6 +1,15 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: #efefef;
+    
+}
+#GreetingMessage {
+    color: white;
+}
+.jumbotron {
+    background: #0E131B;
+    margin-top: 10px;
 }
 .navbar{
     margin-bottom: 20px;
@@ -23,4 +32,23 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.resultSection {
+    border: solid 1px black;
+    margin-bottom: 60px;
+    
+}
+
+/*
+    section Table
+*/
+.headerSection {
+    padding: 0px;
+    background: #0E131B;
+}
+.headingText {
+    margin-top: 0px;
+    color: white;
+
 }

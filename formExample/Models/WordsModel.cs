@@ -19,9 +19,8 @@ namespace formExample.Models
         {
 
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
-
             string path = Directory.GetCurrentDirectory() + folderAndFileName;
-            //return path;
+
             try
             {
 
@@ -63,15 +62,13 @@ namespace formExample.Models
                     if (Char.ToLower(tempLine[i]) == Char.ToLower(userInputCharacterArray[j]))
                     {
                         exactMatchTracker++;
-                        userInputCharacterArray[j] = '1';//Marks it so we know it's a match
+                        userInputCharacterArray[j] = '1';//Marks index as a '1' so we know it's a match
 
 
                         if ((exactMatchTracker == tempLine.Length) && (exactMatchTracker != 0))
                         {
                             matchingWordsArray.Add(tempLine);
                         }
-
-
                         j = userStringInput.Length;
                     }
                     else
@@ -88,6 +85,8 @@ namespace formExample.Models
          * @param userStringInput - Takes int the letters of user input to have a list characters to use to form words
          * @param userStringInput - List of characters that match the user Input. If there is a match then the slot in the array 
          *                          will be null to show that the word has already been used.
+         *          
+         * This method takes the string that was inputted by the user and stores each character in the string into an array.
          */
         private void CreateUserInputArray(string userStringInput, char[] userInputCharacterArray)
         {
@@ -96,11 +95,15 @@ namespace formExample.Models
                 userInputCharacterArray[wordIndex] = userStringInput[wordIndex];
             }
         }
+
+
         private void ResetTrackerAndUserWordInput(int exactMatchTracker, char[] userInputCharacterArray, string userStringInput)
         {
             exactMatchTracker = 0;
             userInputCharacterArray = new char[userStringInput.Length];
         }
+
+
         /*
          * Returns an array of matching words
          */
@@ -114,7 +117,6 @@ namespace formExample.Models
             string newUserWord = null;
             for(int i = 0; i < word.Length; i++)
             {
-
                 if(i == index)
                 {
                     
@@ -123,8 +125,6 @@ namespace formExample.Models
                 {
                     newUserWord = newUserWord + word[i].ToString();
                 }
-               
-               
             }
             return newUserWord;
         }
